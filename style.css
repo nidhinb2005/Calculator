@@ -1,0 +1,15 @@
+#calc{
+    height:100%vh;
+    width:70%;
+    border:2px solid black;
+    
+}
+button{
+    height:60px;
+    width:230px;   
+    margin:5px;
+}
+input{
+    height:80px;
+    width:99.5%;
+}
