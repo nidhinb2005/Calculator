@@ -11,6 +11,14 @@ Array.from(buttons).forEach((button) => {
             
             try {
                 let expression = string
+                .replace(/\)\(/g,")*(")
+                .replace(/(\d+)%/g,"($1/100)")
+                .replace(/(\d+(.\d+)?)+(\d+(.\d+)?)%/g,"($1+($1*$3/100))")
+
+             .replace(/(\d+(.\d+)?)-(\d+(.\d+)?)%/g,"($1-($1*$3/100))")
+    .replace(/(\d+(.\d+)?)%/g, "($1/100)")
+    .replace(/(\d)\(/g,"$1*(")
+    .replace(/\)(\d)/g,")*$1")
     .replace(/(\d+)√\((.*?)\)/g, "$1*Math.sqrt($2)")
     .replace(/(\d+)√(\d+(\.\d+)?)/g, "$1*Math.sqrt($2)")
     .replace(/√\((.*?)\)/g, "Math.sqrt($1)")
@@ -45,33 +53,6 @@ Array.from(buttons).forEach((button) => {
 
         else if (e.target.innerHTML == "√") {
          string+="√";
-        }
-
-        else if (e.target.innerHTML == "%") {
-
-            if (string != "") {
-                string = (parseFloat(string) / 100).toString();
-            }
-
-        }
-        else if(e.target.innerHTML=="()"){
-            let open=(string.match(/\(/g)||[]).length;
-            let close=(string.match(/\)/g)||[]).length;
-            if(open==close){
-                string+="(";
-            }
-            else{
-                string+=")";
-            }
-        }
-        else if(e.target.innerHTML=="+/-"){
-            if(string.startsWith("-")){
-                string=string.slice(1);
-            }
-            else{
-                string="-"+string;
-            }
-
         }
 
         else {
